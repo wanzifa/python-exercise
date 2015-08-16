@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 a = {
      '朱承浩':{'name':'朱承浩','username':'zhu','age':19},
      '赵老板':{'name':'赵老板','username':'zhao','age':20}
