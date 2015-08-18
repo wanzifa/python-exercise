@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 # 习题2-11
 
-print ('please input 5 numbers and choose one of those choices:\n plus(show you the sum of the 5 numbers)\n average(show you the average of the five numbers)\n exit(exit this program)')
+# 这行代码太长，可以用'''str'''
+print '''
+    please input 5 numbers and choose one of those choices:
+        plus(show you the sum of the 5 numbers)
+        average(show you the average of the five numbers)
+        exit(exit this program)')
+'''
 
 
 a = input ('please input number1:')
