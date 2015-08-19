@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# 5-5
 
 money = input('please input your money：')
 a = float(money) * 100
