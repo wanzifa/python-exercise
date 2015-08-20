@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-#6-14
+# 6-14
+# 关于＃注释：＃后空一格，如果＃紧接行后则与行末空两格
 
 from random import choice
 
