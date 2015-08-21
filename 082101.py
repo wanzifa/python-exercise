@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+#7-5（部分功能没实现，有点摸不着头脑）
+
 import time
 
 
@@ -26,13 +29,13 @@ def olduser():
     pwd = raw_input('password:')
     passwd = db.get(name)
     if passwd == pwd:
-        print 'welcome back',name
+        print 'welcome back', name
     else :
         print 'login incorrect'
     time1[len(time1)+1] = time.time()
-    if time1[len(time1)] - time1[len(time1)-1] < 4 * 365 * 24 * 60 * 60 :
+    if time1[len(time1)] - time1[len(time1)-1] < 4 * 365 * 24 * 60 * 60：
         print ('last time you entered was at %f') % time1[len(time1)-1]
-    choose()
+    choose()：
 
 
 def showmenu():
