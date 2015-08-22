@@ -35,7 +35,7 @@ def olduser():
     time1[len(time1)+1] = time.time()
     if time1[len(time1)] - time1[len(time1)-1] < 4 * 365 * 24 * 60 * 60：
         print ('last time you entered was at %f') % time1[len(time1)-1]
-    choose()：
+    choose()
 
 
 def showmenu():
