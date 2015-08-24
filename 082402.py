@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#8-9
+# 8-9
 
 N = input('please input a number:')
 list1 = [1,1]
