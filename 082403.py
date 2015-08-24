@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# 8-12
+
 begining = input('please enter the begining number:')
 end = input('please enter the end number:')
 
