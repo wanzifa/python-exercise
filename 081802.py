@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-﻿#coding:utf-8
+#coding:utf-8
 #2-15
-=======
-hhahaha
->>>>>>> b625afc235d859221fcb34d476512392e5641b3c
 
 # 这行代码太长，可以用'''str'''
 print '''
