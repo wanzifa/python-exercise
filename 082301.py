@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#7-9
+# 7-9
 
 def tr(srcstr, dststr, string, ignore = True):
     if(ignore == False):

@@ -1,5 +1,5 @@
-# -*- coding: cp936 -*-
-#8-6
+# -*- coding: utf-8 -*-
+# 8-6
 
 number = input('please input a number:')
 list1 = []

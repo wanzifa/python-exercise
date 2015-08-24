@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#7-14&&7-13
+# 7-14&&7-13
 import random
 
 a =[]

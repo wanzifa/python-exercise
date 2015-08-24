@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#7-10
+# 7-10
 
 string = raw_input('please input a string:')
 
