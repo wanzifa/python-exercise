@@ -32,6 +32,7 @@ def connect_db():
 
 #初始化数据库
 def init_db():
+    “”“函数/类注释建议写在函数/类的内部”“”
     with closing(connect_db()) as db:
         with app.open_resource('schema.sql') as f:
             db.cursor().executescript(f.read())
@@ -46,6 +47,8 @@ def before_request():
 
 @app.teardown_request
 def teardown_request(exception):
+    """teardowm_request就是即使服务器出现异常，也会执行操作
+       这里的操作就是关闭数据库连接"""
     db = getattr(g, 'db', None)
     if db is not None:
         db.close()
@@ -56,6 +59,7 @@ def teardown_request(exception):
 #用于显示函数的url
 @app.route('/')
 def show_entries():
+    “”“这里是flask原生的操作数据库的方式,即直接通过cur执行sql语句”“”
     cur = g.db.execute('select title, text from entries order by id desc')
     entries = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
     return render_template('show_entries.html', entries=entries)
@@ -65,14 +69,20 @@ def show_entries():
 #但是对这个里面的代码不是很理解，总感觉这个模块没什么意义（逃
 #这里除了给出url，还给出了http请求方法post，post是允许提交的请求方法。
 #这里有个小问题：post是不是也能执行get的功能？想一想只有get了才能显示才能提交咩~（逃
-@app.route('/add', methods=['POST'])
+@app.route('/add', methods=['POST'])  # methods 默认是包含GET的:)
 def add_entry():
+    """写文章"""
     if not session.get('logged_in'):
+        # 如果没有登录，引发401错误(无权限)
         abort(401)
+    # 否则，执行sql语句向数据库中添加文章
     g.db.execute('insert into entries (title, text) values (?, ?)',
                  [request.form['title'], request.form['text']])
+    # 将文章提交到数据库中
     g.db.commit()
+    # 消息闪现
     flash('New entry was successfully posted')
+    # 重定向
     return redirect(url_for('show_entries'))
 
 
