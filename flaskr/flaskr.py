@@ -1,5 +1,7 @@
 #这个地方coding:utf-8似乎没啥用？
+# coding: utf-8
 
+#把所有的import引入给写全
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -9,7 +11,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 
 
-# config
+#配置信息
 DATABASE = 'c://flaskr//flaskr.db'
 DEBUG = True
 SECRET_KEY = 'development key'
@@ -17,16 +19,18 @@ USERNAME = 'admin'
 PASSWORD = 'default'
 
 
-# create app
+# 写个实例
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('FLASKR_SETTINGS', silent=True) # override!
 
 
+#连接指定的数据库，这里应该是配置信息里的datebase
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
 
 
+#初始化数据库
 def init_db():
     with closing(connect_db()) as db:
         with app.open_resource('schema.sql') as f:
@@ -34,6 +38,7 @@ def init_db():
         db.commit()
 
 
+#请求数据库连接（这地方说实话没懂那个after_request和那个teardown_request的特征和区别）
 @app.before_request
 def before_request():
     g.db = connect_db()
@@ -47,6 +52,8 @@ def teardown_request(exception):
     g.db.close()
 
 
+#show_entries应该就是传说中的一个视图函数。。。然后route（）函数用来告诉Flask
+#用于显示函数的url
 @app.route('/')
 def show_entries():
     cur = g.db.execute('select title, text from entries order by id desc')
@@ -54,6 +61,10 @@ def show_entries():
     return render_template('show_entries.html', entries=entries)
 
 
+#当url为···/add时 返回一个错误提示页面
+#但是对这个里面的代码不是很理解，总感觉这个模块没什么意义（逃
+#这里除了给出url，还给出了http请求方法post，post是允许提交的请求方法。
+#这里有个小问题：post是不是也能执行get的功能？想一想只有get了才能显示才能提交咩~（逃
 @app.route('/add', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
@@ -65,6 +76,7 @@ def add_entry():
     return redirect(url_for('show_entries'))
 
 
+#登入函数。这里和上面格式一样，没太懂这里为啥还专门强调了个get
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -80,12 +92,13 @@ def login():
     return render_template('login.html', error=error)
 
 
+#登出函数
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
     flash('您已登出')
     return redirect(url_for('show_entries'))
 
-
+#只有这个模块被直接调用时，app才能运行起来
 if __name__ == '__main__':
     app.run()
